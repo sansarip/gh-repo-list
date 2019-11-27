@@ -4,6 +4,16 @@
 
 An example project that uses [my full stack Clojure web app template](https://github.com/sansarip/yet-another-clojure-web-app-template)
 
+### Application FSM
+
+![fsm](https://gyazo.com/524b5caf72db1255b4078be15d65eb8c)
+
+where
+
+t = template
+
+r = repositories
+
 ## Spinning up the DB
 
 ### Prerequisites

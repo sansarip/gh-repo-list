@@ -6,7 +6,7 @@ An example project that uses [my full stack Clojure web app template](https://gi
 
 ### Application FSM
 
-![fsm](https://gyazo.com/524b5caf72db1255b4078be15d65eb8c)
+![fsm](https://i.gyazo.com/524b5caf72db1255b4078be15d65eb8c.png)
 
 where
 

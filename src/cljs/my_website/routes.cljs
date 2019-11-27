@@ -2,32 +2,29 @@
   (:require-macros [secretary.core :refer [defroute]])
   (:import goog.History)
   (:require
-   [secretary.core :as secretary]
-   [goog.events :as gevents]
-   [goog.history.EventType :as EventType]
-   [re-frame.core :as re-frame]
-   [my-website.events :as events]
-   ))
+    [secretary.core :as secretary]
+    [goog.events :as gevents]
+    [goog.history.EventType :as EventType]
+    [re-frame.core :refer [dispatch]]
+    [my-website.events :as events]
+    [my-website.views.repos.panel :refer [repos-panel]]
+    [my-website.views.repos.state :as repos-state]))
+
 
 (defn hook-browser-navigation! []
   (doto (History.)
     (gevents/listen
-     EventType/NAVIGATE
-     (fn [event]
-       (secretary/dispatch! (.-token event))))
+      EventType/NAVIGATE
+      (fn [event]
+        (secretary/dispatch! (.-token event))))
     (.setEnabled true)))
 
 (defn app-routes []
   (secretary/set-config! :prefix "#")
-  ;; --------------------
-  ;; define routes here
+
   (defroute "/" []
-    (re-frame/dispatch [::events/set-active-panel :home-panel])
-    )
+            (dispatch [::events/set-fsm repos-state/fsm])
+            (dispatch [::events/set-state (:start repos-state/fsm)])
+            (dispatch [::events/set-active-panel repos-panel]))
 
-  (defroute "/about" []
-    (re-frame/dispatch [::events/set-active-panel :about-panel]))
-
-
-  ;; --------------------
   (hook-browser-navigation!))

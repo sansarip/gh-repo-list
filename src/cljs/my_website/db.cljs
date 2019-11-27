@@ -3,4 +3,6 @@
 (def default-db
   {:state        nil
    :fsm          nil
-   :active-panel #(vector :div "default")})
+   :active-panel #(vector :div "default")
+   :repos/db     {:repos    []
+                  :template []}})

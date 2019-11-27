@@ -1,6 +1,6 @@
 (ns my-website.cards
   (:require [devcards.core :as dc]
-            [my-website.cards.components]))
+            [my-website.cards.semantic_ui.segments]))
 
 (enable-console-print!)
 

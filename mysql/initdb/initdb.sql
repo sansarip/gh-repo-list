@@ -1,6 +1,6 @@
 CREATE DATABASE TestApp;
 
-CREATE TABLE TestApp.Repositories (id int(10) not null, name varchar(256), stars int(1) not null);
+CREATE TABLE TestApp.Repositories (id int(10) not null, name varchar(256), stars int(10) not null);
 
 CREATE TABLE TestApp.Template (title varchar(256) not null, subtitle varchar(256) not null, isActive bit(1) not null);
 

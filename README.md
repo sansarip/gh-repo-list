@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/sansarip/yet-another-clojure-web-app-template.svg?branch=master)](https://travis-ci.org/sansarip/yet-another-clojure-web-app-template)
+[![Build Status](https://travis-ci.org/sansarip/gh-repo-list.svg?branch=master)](https://travis-ci.org/sansarip/gh-repo-list)
 
 ## About
 

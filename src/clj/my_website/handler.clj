@@ -14,7 +14,11 @@
     [ring.util.response :refer [resource-response response]]
     [ring.middleware.reload :refer [wrap-reload]]))
 
-(defonce db (component/start (new-database config/db-spec)))
+(defonce db (try
+              (component/start (new-database config/db-spec))
+              (catch Exception _
+                nil)))
+
 (def error-response {:status "500"
                      :body   "Internal Server Error"})
 
@@ -30,7 +34,7 @@
                             {:min (. Integer parseInt (or min "0"))
                              :max (. Integer parseInt (or max "9"))})])
                        response)
-                   (catch Throwable _
+                   (catch Exception _
                      (component/stop db)
                      error-response)))
                wrap-json-response)
@@ -38,9 +42,9 @@
                  (try
                    (-> (jdbc/execute!
                          (:datasource db)
-                         ["SELECT * FROM Template WHERE isActive=1 LIMIT 1"])
+                         ["SELECT * FROM Template WHERE isActive=1"])
                        response)
-                   (catch Throwable _
+                   (catch Exception _
                      (component/stop db)
                      error-response)))
                wrap-json-response)
@@ -48,4 +52,4 @@
 
 (def app
   (-> (handler/site main-routes)
-      (wrap-base-url)))
+      wrap-base-url))

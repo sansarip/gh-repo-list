@@ -6,3 +6,8 @@
   ::active-panel
   (fn [db _]
       (:active-panel db)))
+
+(re-frame/reg-sub
+  ::state
+  (fn [db _]
+    (:state db)))

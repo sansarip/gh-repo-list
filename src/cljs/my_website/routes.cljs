@@ -26,7 +26,7 @@
   (defroute "/" []
             (dispatch [::events/set-fsm repos-state/fsm])
             (dispatch [::events/set-state (:start repos-state/fsm)])
-            (dispatch [::repos-events/fetch-templates-and-repos])
+            (dispatch [::repos-events/fetch-template-and-repos])
             (dispatch [::events/set-active-panel repos-panel]))
 
   (hook-browser-navigation!))

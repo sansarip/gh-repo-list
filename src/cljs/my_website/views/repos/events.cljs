@@ -9,7 +9,7 @@
     [re-frame.core :refer [reg-event-db reg-event-fx]]))
 
 (reg-event-fx
-  ::fetch-templates-and-repos
+  ::fetch-template-and-repos
   (fn-traced [{:keys [db]} _]
              (let [uri (string/join "/" [(:uri api-spec)
                                          (-> api-spec :endpoints :template :path)])]

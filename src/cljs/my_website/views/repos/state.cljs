@@ -5,9 +5,8 @@
                               :fail    'fetch-t-r-failure}
           'fetch-t-r-failure {:ok    'done
                               :retry 'fetching-t-r}
-          'fetching-r        {:succeed 'fetch-t-r-success
+          'fetching-r        {:succeed 'done
                               :fail    'fetch-r-failure}
           'fetch-r-failure   {:ok    'done
                               :retry 'fetching-t-r}
-          'fetch-t-r-success {:ok 'done}
           'done              {:refresh 'fetching-t-r}})

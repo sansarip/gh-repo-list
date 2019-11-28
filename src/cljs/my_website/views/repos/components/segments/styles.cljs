@@ -5,7 +5,7 @@
           {:grid-area "repos"}
           [".semantic-ui-segment" {:transition       "background-color .25s ease-in-out"
                                    :background-color "rgba(0, 0, 0, .2) !important"}]
-          [".border-top" {:border-top ".5px solid rgba(255, 255, 255, .6) !important"}]
+          [".border-top" {:border-top ".8px solid rgba(255, 255, 255, .6) !important"}]
           [".semantic-ui-segment:hover" {:background-color "rgba(0, 0, 0, .14) !important"
                                          :cursor           "pointer"}]
           [".semantic-ui-segment:active" {:background-color "rgba(0, 0, 0, .08) !important"}]

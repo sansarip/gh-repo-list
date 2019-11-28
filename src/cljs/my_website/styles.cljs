@@ -2,12 +2,18 @@
   (:require [spade.core :refer [defglobal]]
             [cljstache.core :refer [render]]))
 
+(def screen-sizes {:tablet        "768px"
+                   :mobile-huge   "525px"
+                   :mobile-large  "425px"
+                   :mobile-medium "375px"
+                   :mobile-small  "320px"})
+
 (defglobal global-class []
            (let [bg-color "rgb(19, 112, 251)"
                  dot-color "#3882E8"
                  dot-size 2
                  dot-space 22]
-             ["body" {:font-size       "16px"
+             ["body" {:font-size       "1em"
                       :color           "#131F33"
                       :background      (render
                                          "linear-gradient(90deg, {{bg-color}} {{dot-diff}}, transparent 1%) center,

@@ -23,8 +23,8 @@
                                 :inverted  "true"
                                 :on-click  #(confetti-cannon uuid)}
                     [:div.my-segment {:id uuid}
-                     [:span name]
-                     [:span.stars stars
+                     [:div name]
+                     [:div.stars stars
                       [:> icon {:name      "star outline"
                                 :className "star-icon"}]]]])))
     [:> segment-group {:className (segment-group-class)

@@ -21,16 +21,33 @@ r = repositories
 * [Docker Compose](https://docs.docker.com/compose/gettingstarted/)
 * Make (`brew install make` or `apt install make`)
 
-
 1. Create a `.env` file in the root directory of this project.
 2. Navigate to the root directory of this project and execute `echo 'MYSQL_ROOT_PASSWORD=<yourpassword>' >> .env`.
 3. While still in the root directory, spin up the MySQL DB by running `make start-db`.
 4. After a little while the MySQL DB will initialize along with Adminer; navigate to [localhost:8080](localhost:8080) and log in with the password you set in step two.
 5. You should now be able to see the dummy data located within two tables in the TestApp database.
 
+### Setting up your env vars
+
+The application will read the database connection info from your system environment variables. The defaults should be ok, other than the password. 
+
+Run `export MYSQL_DATABASE_PASSWORD=<yourpassword>` before moving on to run the application.
+
+Here's a full list of the database connection environment variables if you need to change them for some reason.
+
+| NAME                     | DEFAULT VALUE | REQUIRED |
+|--------------------------|---------------|----------|
+| MYSQL_DATABASE_DBNAME    | TestApp       | No       |
+| MYSQL_DATABASE_HOST      | localhost     | No       |
+| MYSQL_DATABASE_PORT      | 3306          | No       |
+| MYSQL_DATABASE_USER      | root          | No       |
+| MYSQL_DATABASE_PASSWORD  | password      | Yes      |
+| MYSQL_DATABASE_POOL_SIZE | 20            | No       |
+
 ## Development Mode
 
 ### Prerequisites
+* DB has been spun up successfully (see above)
 * [JDK 9+](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Leiningen](https://leiningen.org/)
 * [Clojure](https://clojure.org/guides/getting_started)
@@ -62,7 +79,10 @@ Want to test your cljs? Visit [http://localhost:9500/figwheel-extra-main/auto-te
 
 ## Production Build
 
-Make sure you've run `yarn webpack` at least once prior
+### Prerequisites
+
+* Same prereqs as dev 
+* Make sure you've run `yarn webpack` at least once prior
 
 ```
 lein clean

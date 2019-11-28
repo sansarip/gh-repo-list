@@ -5,4 +5,5 @@
    :fsm          nil
    :active-panel #(vector :div "default")
    :repos/db     {:repos    []
-                  :template []}})
+                  :template []
+                  :selected #{}}})

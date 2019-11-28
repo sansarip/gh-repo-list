@@ -5,3 +5,13 @@
   ::repos
   (fn [db _]
     (-> db :repos/db :repos)))
+
+(reg-sub
+  ::selected
+  (fn [db _]
+    (-> db :repos/db :selected)))
+
+(reg-sub
+  ::template
+  (fn [db _]
+    (-> db :repos/db :template)))

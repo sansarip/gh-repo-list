@@ -1,14 +1,13 @@
 (ns my-website.views.repos.state)
 
-(def fsm {:start               'fetching-templates-and-repos
-          'fetching-templates  {:success 'fetch-templates-success
-                                :fail    'fetch-templates-failure}
-          'fetch-templates-failure {:ok 'chilling
-                                    :fetch}
-          'fetch-repos-success {:ok    'chilling
-                                :fetch 'fetching-repos}
-          'fetch-repos-failure {:ok    'chilling
-                                :fetch 'fetching-repos}
-          'fetching-repos      {:fail    'fetch-repos-failure
-                                :succeed 'fetch-repos-success}
-          'chilling            {:fetch-templates 'fetching-templates}})
+(def fsm {:start             'fetching-t-r
+          'fetching-t-r      {:succeed 'fetching-r
+                              :fail    'fetch-t-r-failure}
+          'fetch-t-r-failure {:ok    'done
+                              :retry 'fetching-t-r}
+          'fetching-r        {:succeed 'fetch-t-r-success
+                              :fail    'fetch-r-failure}
+          'fetch-r-failure   {:ok    'done
+                              :retry 'fetching-t-r}
+          'fetch-t-r-success {:ok 'done}
+          'done              {:refresh 'fetching-t-r}})

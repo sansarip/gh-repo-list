@@ -26,17 +26,16 @@
   (fn-traced [{:keys [db]} [_ response]]
              {:db         db
               :dispatch-n (list
-                            [::assoc-repos-db :template response]
+                            [::assoc-repos-db :template (first response)]
                             [::events/transition-state :succeed]
                             [::fetch-repos])}))
 
 (reg-event-fx
   ::fetch-template-failure
-  (fn-traced [{:keys [db]} [_ response]]
+  (fn-traced [{:keys [db]} [_ _response]]
              {:db         db
               :dispatch-n (list
-                            [::events/transition-state :fail]
-                            [::fetch-repos])}))
+                            [::events/transition-state :fail])}))
 
 (reg-event-fx
   ::fetch-repos
@@ -69,3 +68,17 @@
   ::assoc-repos-db
   (fn-traced [db [_ k v]]
              (assoc-in db [:repos/db k] v)))
+(reg-event-db
+  ::assoc-repos-db
+  (fn-traced [db [_ k v]]
+             (assoc-in db [:repos/db k] v)))
+
+(reg-event-db
+  ::assoc-repos-db
+  (fn-traced [db [_ k v]]
+             (assoc-in db [:repos/db k] v)))
+
+(reg-event-db
+  ::set-selected
+  (fn-traced [db [_ val]]
+             (assoc-in db [:repos/db :selected] val)))

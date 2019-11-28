@@ -22,31 +22,35 @@
 (def error-response {:status "500"
                      :body   "Internal Server Error"})
 
+(defn carefully-execute [database query error-response]
+  (try
+    (-> (jdbc/execute!
+          (:datasource database)
+          [query])
+        response)
+    (catch Exception _
+      (component/stop db)
+      error-response)))
+
 (defroutes main-routes
            (GET "/" []
              (resource-response "index.html" {:root "public"}))
            (-> (GET "/repos" {{min :min max :max} :params}
-                 (try
-                   (-> (jdbc/execute!
-                         (:datasource db)
-                         [(render
-                            "SELECT * FROM Repositories WHERE id BETWEEN {{min}} AND {{max}}"
-                            {:min (. Integer parseInt (or min "0"))
-                             :max (. Integer parseInt (or max "9"))})])
-                       response)
-                   (catch Exception _
-                     (component/stop db)
-                     error-response)))
+                 (carefully-execute db (render
+                                         "SELECT * FROM Repositories WHERE id BETWEEN {{min}} AND {{max}}"
+                                         {:min (. Integer parseInt (or min "0"))
+                                          :max (. Integer parseInt (or max "9"))})
+                                    error-response))
                wrap-json-response)
            (-> (GET "/template" []
-                 (try
-                   (-> (jdbc/execute!
-                         (:datasource db)
-                         ["SELECT * FROM Template WHERE isActive=1 LIMIT 1"])
-                       response)
-                   (catch Exception _
-                     (component/stop db)
-                     error-response)))
+                 (carefully-execute db "SELECT * FROM Template WHERE isActive=1 LIMIT 1" error-response))
+               wrap-json-response)
+           (-> (POST "/new" {{name :name stars :stars} :params}
+                 (carefully-execute db (render
+                                         "INSERT INTO TestApp.Repositories (name, stars) VALUES ('{{name}}', {{stars}})"
+                                         {:name  name
+                                          :stars (. Integer parseInt (or stars "0"))})
+                                    error-response))
                wrap-json-response)
            (resources "/"))
 

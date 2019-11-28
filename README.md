@@ -1,8 +1,6 @@
 [![Build Status](https://travis-ci.org/sansarip/gh-repo-list.svg?branch=master)](https://travis-ci.org/sansarip/gh-repo-list)
 # GH Repo List
 
-## About
-
 An example project mocking a GitHub repo list that uses [my full stack Clojure web app template](https://github.com/sansarip/yet-another-clojure-web-app-template)
 
 <details>

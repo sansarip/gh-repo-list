@@ -42,7 +42,7 @@ Run this once
 yarn webpack
 ```
 
-_Yarn and webpack are only necessary, because I added literal confetti :tada:_
+_Yarn and webpack are only necessary because I added literal confetti :tada:_
 
 Then run this
 ```bash

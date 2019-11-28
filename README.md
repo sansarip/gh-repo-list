@@ -31,11 +31,21 @@ r = repositories
 ## Development Mode
 
 ### Prerequisites
-* [JDK 8+](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+* [JDK 9+](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Leiningen](https://leiningen.org/)
 * [Clojure](https://clojure.org/guides/getting_started)
+* [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable)
+* [webpack](https://yarnpkg.com/lang/en/docs/install/#mac-stable)
 
+Run this once
+```bash
+yarn webpack
 ```
+
+Yarn and webpack are only necessary, because I added literal confetti :tada:
+
+Then run this
+```bash
 lein clean
 lein fig:dev
 ```
@@ -51,6 +61,8 @@ You can view your devcards at [http://localhost:9500/devcards.html](http://local
 Want to test your cljs? Visit [http://localhost:9500/figwheel-extra-main/auto-testing](http://localhost:9500/figwheel-extra-main/auto-testing) and see your test turn from red to green!
 
 ## Production Build
+
+Make sure you've run `yarn webpack` at least once prior
 
 ```
 lein clean

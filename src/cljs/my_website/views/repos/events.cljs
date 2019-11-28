@@ -7,7 +7,40 @@
     [my-website.events :as events]
     [my-website.config :refer [api-spec]]
     [my-website.utilities :refer [lower-case-fq-keys]]
-    [re-frame.core :refer [reg-event-db reg-event-fx]]))
+    [re-frame.core :refer [reg-event-db reg-event-fx]]
+    [cljstache.core :refer [render]]))
+
+(reg-event-fx
+  ::create-repo
+  (fn-traced [{:keys [db]} [_ r-name stars]]
+             (let [uri (-> (string/join "/" [(:uri api-spec)
+                                             (-> api-spec :endpoints :new :path)])
+                           (str (render "?name={{name}}&stars={{stars}}"
+                                        {:name  r-name
+                                         :stars stars})))]
+
+               {:db         db
+                :http-xhrio {:uri             uri
+                             :method          :post
+                             :timeout         6000
+                             :format          (ajax/url-request-format)
+                             :response-format (ajax/json-response-format {:keywords? true})
+                             :on-success      [::create-repo-success]
+                             :on-failure      [::create-repo-failure]}})))
+
+(reg-event-fx
+  ::create-repo-success
+  (fn-traced [{:keys [db]} [_ _response]]
+             {:db         db
+              :dispatch-n (list
+                            [::events/transition-state :succeed]
+                            [::fetch-repos])}))
+
+(reg-event-fx
+  ::create-repo-failure
+  (fn-traced [{:keys [db]} [_ _response]]
+             {:db       db
+              :dispatch [::events/transition-state :failure]}))
 
 (reg-event-fx
   ::fetch-template-and-repos

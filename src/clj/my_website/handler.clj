@@ -45,10 +45,10 @@
            (-> (GET "/template" []
                  (carefully-execute db "SELECT * FROM Template WHERE isActive=1 LIMIT 1" error-response))
                wrap-json-response)
-           (-> (POST "/new" {{name :name stars :stars} :params}
+           (-> (POST "/new" {{r-name :name stars :stars} :params}
                  (carefully-execute db (render
                                          "INSERT INTO TestApp.Repositories (name, stars) VALUES ('{{name}}', {{stars}})"
-                                         {:name  name
+                                         {:name  r-name
                                           :stars (. Integer parseInt (or stars "0"))})
                                     error-response))
                wrap-json-response)

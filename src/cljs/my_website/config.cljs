@@ -5,4 +5,5 @@
 
 (def api-spec {:uri       ""
                :endpoints {:repos    {:path "repos"}
-                           :template {:path "template"}}})
+                           :template {:path "template"}
+                           :new      {:path "new"}}})

@@ -8,6 +8,7 @@
             [my-website.views.repos.components.segments.segments :refer [make-segment-group]]
             [my-website.views.repos.components.filter.filter :refer [make-filter do-filter]]
             [my-website.views.repos.components.error-modal.error-modal :refer [make-error-modal]]
+            [my-website.views.repos.components.new-action.new-action :refer [make-new-action-modal]]
             [reagent.core :as r]
             [re-frame.core :refer [subscribe dispatch]]))
 
@@ -26,7 +27,8 @@
         selected @(subscribe [::subs/selected])
         state @(subscribe [::root-subs/state])
         is-fetching-t-r (= state 'fetching-t-r)
-        is-fetching-r (= state 'fetching-r)]
+        is-fetching-r (= state 'fetching-r)
+        is-creating-r (= state 'creating-r)]
     [:div {:className (container-class)}
      [:div.sizer
       [:div.grid
@@ -34,9 +36,12 @@
                          :on-no #(dispatch [::root-events/transition-state :ok])
                          :on-retry #(do (dispatch [::root-events/transition-state :retry])
                                         (dispatch [::events/fetch-template-and-repos])))
-       [:> dimmer {:active (or is-fetching-t-r is-fetching-r)}
+       (make-new-action-modal #(do (dispatch [::root-events/transition-state :create])
+                                   (dispatch [::events/create-repo %1 %2])))
+       [:> dimmer {:active (or is-fetching-t-r is-fetching-r is-creating-r)}
         [:> loader {:content  (cond is-fetching-t-r "Loading template"
-                                    is-fetching-r "Loading repositories")
+                                    is-fetching-r "Loading repositories"
+                                    is-creating-r "Creating new repository")
                     :active   (or is-fetching-t-r is-fetching-r)
                     :inverted "true"}]]
        [:> header {:as        :h1
@@ -51,8 +56,5 @@
                 :panes     [{:menuItem "Lorem Ipsum"}]}]
        (make-filter :repos repos
                     :on-search #(dispatch [::events/set-selected %]))
-       [:> button {:className "new-action"
-                   :primary   true}
-        "New Action"]
        (make-segment-group (do-filter repos selected))]]]))
 

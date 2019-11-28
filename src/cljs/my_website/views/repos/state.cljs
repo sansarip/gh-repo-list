@@ -9,4 +9,9 @@
                               :fail    'fetch-r-failure}
           'fetch-r-failure   {:ok    'done
                               :retry 'fetching-t-r}
-          'done              {:refresh 'fetching-t-r}})
+          'creating-r        {:succeed 'fetching-r
+                              :fail    'create-r-failure}
+          'create-r-failure  {:ok    'done
+                              :retry 'creating-r}
+          'done              {:refresh 'fetching-t-r
+                              :create  'creating-r}})

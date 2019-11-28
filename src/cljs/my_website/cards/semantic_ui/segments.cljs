@@ -7,12 +7,12 @@
 (defcard
   simple-segment-group
   "Simple demonstration of semantic-ui segment group"
-  (fn [] (sab/html
-           (r/as-element
-             (r/with-let [segment (component "Segment")
-                          segment-group (component "Segment" "Group")]
-                         [:> segment-group
-                          [:> segment [:p "A"]]
-                          [:> segment [:p "B"]]
-                          [:> segment [:p "C"]]])))))
+  (sab/html
+    (r/as-element
+      (r/with-let [segment (component "Segment")
+                   segment-group (component "Segment" "Group")]
+                  [:> segment-group
+                   [:> segment [:p "A"]]
+                   [:> segment [:p "B"]]
+                   [:> segment [:p "C"]]]))))
 

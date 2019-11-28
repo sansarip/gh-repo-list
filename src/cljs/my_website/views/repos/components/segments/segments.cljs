@@ -16,8 +16,8 @@
 (defn make-segment-group [repos]
   (reduce-kv
     (fn [coll k v]
-      (let [name (:Repositories/name v)
-            stars (:Repositories/stars v)
+      (let [name (:repositories/name v)
+            stars (:repositories/stars v)
             uuid (str "id-" (random-uuid))]
         (conj coll [:> segment {:className (str "semantic-ui-segment" (if (> k 0) " border-top"))
                                 :inverted  "true"

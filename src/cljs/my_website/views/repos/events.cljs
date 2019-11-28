@@ -6,6 +6,7 @@
     [day8.re-frame.tracing :refer-macros [fn-traced]]
     [my-website.events :as events]
     [my-website.config :refer [api-spec]]
+    [my-website.utilities :refer [lower-case-fq-keys]]
     [re-frame.core :refer [reg-event-db reg-event-fx]]))
 
 (reg-event-fx
@@ -26,7 +27,9 @@
   (fn-traced [{:keys [db]} [_ response]]
              {:db         db
               :dispatch-n (list
-                            [::assoc-repos-db :template (first response)]
+                            [::assoc-repos-db :template (-> response
+                                                            first
+                                                            lower-case-fq-keys)]
                             [::events/transition-state :succeed]
                             [::fetch-repos])}))
 
@@ -55,7 +58,7 @@
   (fn-traced [{:keys [db]} [_ response]]
              {:db         db
               :dispatch-n (list
-                            [::assoc-repos-db :repos response]
+                            [::assoc-repos-db :repos (vec (map lower-case-fq-keys response))]
                             [::events/transition-state :succeed])}))
 
 (reg-event-fx

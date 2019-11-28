@@ -12,7 +12,7 @@
       (if (re-find (-> name
                        string/lower-case
                        re-pattern)
-                   (string/lower-case (:Repositories/name v)))
+                   (string/lower-case (str (:repositories/name v))))
         (conj coll k)
         coll))
     #{}

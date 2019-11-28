@@ -7,52 +7,38 @@
             [my-website.views.repos.events :as events]
             [my-website.views.repos.components.segments.segments :refer [make-segment-group]]
             [my-website.views.repos.components.filter.filter :refer [make-filter do-filter]]
+            [my-website.views.repos.components.error-modal.error-modal :refer [make-error-modal]]
             [reagent.core :as r]
             [re-frame.core :refer [subscribe dispatch]]))
 
 (def button (component "Button"))
+(def dimmer (component "Dimmer"))
 (def header (component "Header"))
 (def icon (component "Icon"))
 (def loader (component "Loader"))
-(def modal (component "Modal"))
-(def modal-content (component "Modal" "Content"))
-(def modal-actions (component "Modal" "Actions"))
 (def tab (component "Tab"))
 
 (defn repos-panel []
   (let [template @(subscribe [::subs/template])
-        title (or (:Template/title template) "Title Not Found")
-        subtitle (or (:Template/subtitle template) "Subtitle Not Found")
+        title (or (:template/title template) "Title Not Found")
+        subtitle (or (:template/subtitle template) "Subtitle Not Found")
         repos @(subscribe [::subs/repos])
         selected @(subscribe [::subs/selected])
         state @(subscribe [::root-subs/state])
         is-fetching-t-r (= state 'fetching-t-r)
-        is-fetching-r (= state 'fetching-r)
-        is-fetch-t-r-failure (= state 'fetch-t-r-failure)
-        is-fetch-r-failure (= state 'fetch-r-failure)]
+        is-fetching-r (= state 'fetching-r)]
     [:div {:className (container-class)}
      [:div.sizer
       [:div.grid
-       [:> modal {:basic true
-                  :open  (or is-fetch-t-r-failure is-fetch-r-failure)}
-        [:> modal-content
-         [:p (str (cond is-fetch-t-r-failure "Unable to receive template or repositories. "
-                        is-fetch-r-failure "Unable to receive repositories. ") "Retry?")]]
-        [:> modal-actions
-         [:> button {:basic    true
-                     :color    "red"
-                     :onClick  #(dispatch [::root-events/transition-state :ok])
-                     :inverted "true"}
-          [:> icon {:name "remove"}] "No"]
-         [:> button {:color    "blue"
-                     :onClick  #(do (dispatch [::root-events/transition-state :retry])
-                                    (dispatch [::events/fetch-template-and-repos]))
-                     :inverted "true"}
-          [:> icon {:name "refresh"}] "Retry"]]]
-       [:> loader {:content  (cond is-fetching-t-r "Loading template"
-                                   is-fetching-r "Loading repositories")
-                   :active   (or is-fetching-t-r is-fetching-r)
-                   :inverted "true"}]
+       (make-error-modal :state state
+                         :on-no #(dispatch [::root-events/transition-state :ok])
+                         :on-retry #(do (dispatch [::root-events/transition-state :retry])
+                                        (dispatch [::events/fetch-template-and-repos])))
+       [:> dimmer {:active (or is-fetching-t-r is-fetching-r)}
+        [:> loader {:content  (cond is-fetching-t-r "Loading template"
+                                    is-fetching-r "Loading repositories")
+                    :active   (or is-fetching-t-r is-fetching-r)
+                    :inverted "true"}]]
        [:> header {:as        :h1
                    :className "my-header"
                    :content   title

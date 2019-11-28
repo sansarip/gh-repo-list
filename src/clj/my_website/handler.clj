@@ -42,7 +42,7 @@
                  (try
                    (-> (jdbc/execute!
                          (:datasource db)
-                         ["SELECT * FROM Template WHERE isActive=1"])
+                         ["SELECT * FROM Template WHERE isActive=1 LIMIT 1"])
                        response)
                    (catch Exception _
                      (component/stop db)

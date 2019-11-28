@@ -15,3 +15,8 @@
   ::template
   (fn [db _]
     (-> db :repos/db :template)))
+
+(reg-sub
+  ::search-value
+  (fn [db _]
+    (-> db :repos/db :search-value)))

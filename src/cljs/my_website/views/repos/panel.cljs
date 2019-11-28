@@ -6,7 +6,7 @@
             [my-website.views.repos.subs :as subs]
             [my-website.views.repos.events :as events]
             [my-website.views.repos.components.segments.segments :refer [make-segment-group]]
-            [my-website.views.repos.components.filter.filter :refer [make-filter do-filter]]
+            [my-website.views.repos.components.filter.filter :refer [make-filter do-filter do-search]]
             [my-website.views.repos.components.error-modal.error-modal :refer [make-error-modal]]
             [my-website.views.repos.components.new-action.new-action :refer [make-new-action-modal]]
             [reagent.core :as r]
@@ -55,6 +55,8 @@
                 :inverted  "true"
                 :panes     [{:menuItem "Lorem Ipsum"}]}]
        (make-filter :repos repos
-                    :on-search #(dispatch [::events/set-selected %]))
-       (make-segment-group (do-filter repos selected))]]]))
+                    :on-search #(dispatch [::events/set-search-value %]))
+       (make-segment-group (->> @(subscribe [::subs/search-value])
+                                (do-search repos)
+                                (do-filter repos)))]]]))
 

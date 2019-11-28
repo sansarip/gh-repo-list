@@ -118,3 +118,8 @@
   ::set-selected
   (fn-traced [db [_ val]]
              (assoc-in db [:repos/db :selected] val)))
+
+(reg-event-db
+  ::set-search-value
+  (fn-traced [db [_ val]]
+             (assoc-in db [:repos/db :search-value] val)))

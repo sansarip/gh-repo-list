@@ -6,4 +6,5 @@
    :active-panel #(vector :div "default")
    :repos/db     {:repos    []
                   :template []
-                  :selected #{}}})
+                  :selected #{}
+                  :search-value ""}})

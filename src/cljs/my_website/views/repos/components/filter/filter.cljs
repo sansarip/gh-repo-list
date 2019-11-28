@@ -26,12 +26,11 @@
                       :or   {repos nil}}]
 
   ;; get all initially
-  (if (not (empty? repos))
-    (r/with-let [_ (on-search (do-search repos ""))]))
+  #_(if (not (empty? repos))
+      (r/with-let [_ (on-search (do-search repos ""))]))
 
   [:> input {:className   (filter-class)
-             :onChange    #(on-search
-                             (do-search repos (-> %2
-                                                  (js->clj :keywordize-keys true)
-                                                  :value)))
+             :onChange    #(on-search (-> %2
+                                          (js->clj :keywordize-keys true)
+                                          :value))
              :placeholder "Filter by name"}])

@@ -39,7 +39,7 @@
                  (carefully-execute db (render
                                          "SELECT * FROM Repositories WHERE id BETWEEN {{min}} AND {{max}}"
                                          {:min (. Integer parseInt (or min "0"))
-                                          :max (. Integer parseInt (or max "9"))})
+                                          :max (. Integer parseInt (or max "20"))})
                                     error-response))
                wrap-json-response)
            (-> (GET "/template" []

@@ -6,7 +6,9 @@ pom.xml.asc
 .env
 *.jar
 *.class
+index.bundle.js
 log/
+/node_modules/
 /resources/public/js/compiled
 /lib/
 /classes/

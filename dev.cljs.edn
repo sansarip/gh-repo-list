@@ -3,6 +3,7 @@
   :auto-testing     true
   :log-file         "log/figwheel-main.log"
   :log-level        :info
+  :npm              {:bundles {"dist/index.bundle.js" "src/js/index.js"}}
   :extra-main-files {:devcards {:main my_website.cards}}}
 
 {:main            my_website.core

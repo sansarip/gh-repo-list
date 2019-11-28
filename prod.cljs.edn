@@ -1,3 +1,4 @@
+^{:npm {:bundles {"dist/index.bundle.js" "src/js/index.js"}}}
 {:main            my-website.core
  :optimizations   :whitespace
  :asset-path      "js/compiled/prod"

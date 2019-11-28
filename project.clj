@@ -20,6 +20,7 @@
                  [mysql/mysql-connector-java "8.0.18"]
                  [com.zaxxer/HikariCP "3.3.1"]
                  [com.stuartsierra/component "0.4.0"]
+                 [cljstache "2.0.4"]
                  [de.ubercode.clostache/clostache "1.4.0"]
                  [day8.re-frame/http-fx "v0.2.0"]
                  [org.slf4j/slf4j-simple "1.6.2"]]

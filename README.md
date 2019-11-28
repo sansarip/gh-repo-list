@@ -5,7 +5,7 @@ An example project mocking a GitHub repo list that uses [my full stack Clojure w
 
 <details>
   <summary><b>Application FSM</b></summary>
-  <img src=https://i.gyazo.com/679f1dd597117a45094ee342765f3386.png></img>
+  <img src=https://i.gyazo.com/bd250e74e6ea67630f690c6ff0acfc8d.jpg></img>
   <p>where</p>
   <p>t = template</p>
   <p>r = repositories</p>

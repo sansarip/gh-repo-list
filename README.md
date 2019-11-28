@@ -4,15 +4,13 @@
 
 An example project that uses [my full stack Clojure web app template](https://github.com/sansarip/yet-another-clojure-web-app-template)
 
-### Application FSM
-
-![fsm](https://i.gyazo.com/679f1dd597117a45094ee342765f3386.png)
-
-where
-
-t = template
-
-r = repositories
+<details>
+  <summary><b>Application FSM</b></summary>
+  <img src=https://i.gyazo.com/679f1dd597117a45094ee342765f3386.png></img>
+  <p>where</p>
+  <p>t = template</p>
+  <p>r = repositories</p>
+</details>
 
 ## Spinning up the DB
 

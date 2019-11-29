@@ -38,8 +38,8 @@
            (-> (GET "/repos" {{min :min max :max} :params}
                  (carefully-execute db (render
                                          "SELECT * FROM Repositories WHERE id BETWEEN {{min}} AND {{max}}"
-                                         {:min (. Integer parseInt (or min "0"))
-                                          :max (. Integer parseInt (or max "20"))})
+                                         {:min (str (. Integer parseInt (or min "0")))
+                                          :max (str (. Integer parseInt (or max "20")))})
                                     error-response))
                wrap-json-response)
            (-> (GET "/template" []
@@ -49,7 +49,7 @@
                  (carefully-execute db (render
                                          "INSERT INTO TestApp.Repositories (name, stars) VALUES ('{{name}}', {{stars}})"
                                          {:name  r-name
-                                          :stars (. Integer parseInt (or stars "0"))})
+                                          :stars stars})
                                     error-response))
                wrap-json-response)
            (resources "/"))

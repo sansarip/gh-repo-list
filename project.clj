@@ -43,6 +43,7 @@
                             [com.bhauman/rebel-readline-cljs "0.1.4"]
                             [devcards "0.2.5"]
                             [javax.servlet/servlet-api "2.5"]
+                            [org.clojure/test.check "0.10.0"]
                             [ring/ring-mock "0.3.2"]]}
    :prod    {:dependencies [[day8.re-frame/tracing-stubs "0.5.3"]]}
    :uberjar {:dependencies       [[day8.re-frame/tracing-stubs "0.5.3"]]

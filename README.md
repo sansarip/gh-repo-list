@@ -45,7 +45,7 @@ Here's a full list of the database connection environment variables if you need 
 
 ### Prerequisites
 * DB has been spun up successfully (see above)
-* [JDK 9+](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+* [JDK 8+](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Leiningen](https://leiningen.org/)
 * [Clojure](https://clojure.org/guides/getting_started)
 * [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable)

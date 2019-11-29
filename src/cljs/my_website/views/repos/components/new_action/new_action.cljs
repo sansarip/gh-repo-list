@@ -53,7 +53,9 @@
                                :disabled (or invalid-name invalid-stars)
                                :onClick  #(do
                                             (reset! is-open false)
-                                            (on-submit @name-input @stars-input))}
+                                            (on-submit @name-input @stars-input)
+                                            (reset! name-input "")
+                                            (reset! stars-input ""))}
                     [:> button-content {:visible true}
                      "Submit"]
                     [:> button-content {:hidden true}

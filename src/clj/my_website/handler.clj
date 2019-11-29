@@ -33,6 +33,7 @@
       error-response)))
 
 (defroutes main-routes
+           ;; TODO: Add input sanitation
            (GET "/" []
              (resource-response "index.html" {:root "public"}))
            (-> (GET "/repos" {{min :min max :max} :params}
@@ -47,7 +48,7 @@
                wrap-json-response)
            (-> (POST "/new" {{r-name :name stars :stars} :params}
                  (carefully-execute db (render
-                                         "INSERT INTO TestApp.Repositories (name, stars) VALUES ('{{name}}', {{stars}})"
+                                         "INSERT INTO Repositories (name, stars) VALUES ('{{name}}', {{stars}})"
                                          {:name  r-name
                                           :stars stars})
                                     error-response))

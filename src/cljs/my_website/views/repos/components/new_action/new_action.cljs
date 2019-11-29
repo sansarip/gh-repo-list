@@ -22,7 +22,9 @@
 (defn make-new-action-modal [on-submit]
   (r/with-let [name-input (r/atom "")
                stars-input (r/atom "")
-               is-open (r/atom false)]
+               is-open (r/atom false)
+               reset-inputs! #(do (reset! name-input "")
+                                  (reset! stars-input ""))]
               (let [invalid-name (->> @name-input
                                       (valid-field? :name)
                                       not)
@@ -34,8 +36,10 @@
                              :onClick   #(reset! is-open true)
                              :primary   true}
                   "New Action"]
-                 [:> modal {:open @is-open
-                            :size "mini"}
+                 [:> modal {:open    @is-open
+                            :size    "mini"
+                            :onClose #(do (reset! is-open false)
+                                          (reset-inputs!))}
                   [:> modal-content
                    [:> form
                     [:> form-field {:error invalid-name}
@@ -54,8 +58,7 @@
                                :onClick  #(do
                                             (reset! is-open false)
                                             (on-submit @name-input @stars-input)
-                                            (reset! name-input "")
-                                            (reset! stars-input ""))}
+                                            (reset-inputs!))}
                     [:> button-content {:visible true}
                      "Submit"]
                     [:> button-content {:hidden true}

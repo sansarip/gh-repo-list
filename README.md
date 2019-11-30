@@ -29,7 +29,7 @@ An example project mocking a GitHub repo list that uses [my full stack Clojure w
 4. After a little while the MySQL DB will initialize along with Adminer; navigate to [localhost:8080](localhost:8080) and log in with the password you set in step two.
 5. You should now be able to see the dummy data located within two tables in the TestApp database.
 
-### Setting up your env vars
+## Before you run
 
 The application will read the database connection info from your system environment variables. The defaults should be ok, other than the password. 
 

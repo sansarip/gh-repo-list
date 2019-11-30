@@ -4,6 +4,11 @@
 An example project mocking a GitHub repo list that uses [my full stack Clojure web app template](https://github.com/sansarip/yet-another-clojure-web-app-template)
 
 <details>
+  <summary><b>Preview</b></summary>
+  <img src=https://i.gyazo.com/f94f09e4e26fe2556a826f9fe7bbe855.png></img>
+</details>
+
+<details>
   <summary><b>Application FSM</b></summary>
   <img src=https://i.gyazo.com/e72bf813e54c265f5ab68c814666f95a.jpg></img>
   <p>where</p>

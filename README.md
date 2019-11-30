@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/sansarip/gh-repo-list.svg?branch=master)](https://travis-ci.org/sansarip/gh-repo-list)
 # GH Repo List
 
-An example project mocking a GitHub repo list that uses [my full stack Clojure web app template](https://github.com/sansarip/yet-another-clojure-web-app-template)
+An example project mocking a GitHub repo list that uses [my full stack Clojure web app template](https://github.com/sansarip/yet-another-clojure-web-app-template). You should read this document top down in the order presented. When you get to _Development Mode_, then you may choose to instead skip that section and jump to _Production Build_.
 
 <details>
   <summary><b>Preview</b></summary>

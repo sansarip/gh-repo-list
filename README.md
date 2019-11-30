@@ -5,7 +5,7 @@ An example project mocking a GitHub repo list that uses [my full stack Clojure w
 
 <details>
   <summary><b>Preview</b></summary>
-  <img src=https://i.gyazo.com/f94f09e4e26fe2556a826f9fe7bbe855.png></img>
+  <img src=https://i.gyazo.com/400ded5884c15d1516583d5696aaa354.png></img>
 </details>
 
 <details>

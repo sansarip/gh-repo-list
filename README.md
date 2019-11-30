@@ -97,4 +97,4 @@ Your website will be awaiting you at [localhost:3000](localhost:3000)
 
 _You can change the port by specifying the `JETTY_PORT=<yourport>` env variable_
  
-*Good luck, and have fun, you rascal Clojurians!* :beers:
+*Cheers!* :beers:

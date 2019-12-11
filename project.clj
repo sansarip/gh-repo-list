@@ -50,6 +50,6 @@
              :omit-source        true
              :main               my-website.server
              :aot                [my-website.server]
-             :uberjar-name       "mhd.jar"
+             :uberjar-name       "my-website.jar"
              :prep-tasks         ["compile" ["fig:prod"]]
              :uberjar-exclusions [#"devcards\.html"]}})

@@ -2,7 +2,7 @@
   (:require [cljstache.core :refer [render]]
             [clojure.string :as string]))
 
-(def common-regex {:name         #"^[a-zA-Z0-9\-_ ]{1,26}$"
+(def common-regex {:name         #"^[a-zA-Z]+[0-9]*(?:(?:[ -_]\w+)+)*$"
                    :positive-int #"^[0-9]{1,6}$"})
 
 (defn lower-case-fq-key [k]
